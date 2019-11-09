@@ -1,0 +1,52 @@
+{{ partial "head" . }}
+<link rel="stylesheet" href="/css/calendar-theme.css">
+<script type="text/javascript" src="/js/caleandar.js"></script>
+{{ partial "header" . }}
+<ul style="display: none;" id="data">
+{{ range sort (where .Site.RegularPages "Type" "events") ".Params.when" }}
+    <li>
+        {{ $date := (time .Params.when) }}
+        <h1>{{ .Params.Title }}</h1>
+        <p>{{ $date.Year }}, {{ $date.Month }}, {{ $date.Day }}</p>
+        <a href="{{ .Permalink }}"> {{ .Permalink }}</a>
+    </li>
+    {{ end }}
+</ul>
+<body id="background" style="height: auto;">
+    <div id="caleandar">
+        <script type="text/javascript">
+            let data = document.getElementById('data');
+            let li = data.getElementsByTagName('li');
+            let even = [];
+            for (index = 0; index < li.length; index++) {
+                let date = li[index].getElementsByTagName('p')[0].innerHTML;
+                date = new Date(date);
+                even[index] = {
+                          'Date': date,
+                          'Title': li[index].getElementsByTagName('h1')[0].innerHTML,
+                           'Link': li[index].getElementsByTagName('a')[0].innerHTML
+                        };
+            }
+            const events = [];
+        const settings = {
+            Color: '',
+            LinkColor: '',
+            NavShow: true,
+            NavVertical: false,
+            NavLocation: '',
+            DateTimeShow: true,
+            DateTimeFormat: 'mmm, yyyy',
+            DatetimeLocation: '',
+            EventClick: '',
+            EventTargetWholeDay: true,
+            DisabledDays: [],
+            ModelChange: 'model'
+        };
+        var element = document.getElementById('caleandar');
+        caleandar(element, even, settings);
+    </script>
+</div>
+</body>
+
+<style>
+</style>

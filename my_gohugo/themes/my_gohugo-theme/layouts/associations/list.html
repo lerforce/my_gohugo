@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    {{ partial "head.html" . }}
+    {{ partial "header.html" . }}
+    <body id="background" style="height: auto;">
+            <aside>
+                <div class="input-wrapper">
+                    <input onkeyUp="eventSearch()" type="text" id="event-search" placeholder="Search an event ...">
+                    <img onclick="eventSearch()" src="/img/search.png" alt="">
+                </div>
+                <hr>
+                <div class="result">
+                    <ul id="search-ul" style="display: none">
+                        {{ range .Pages }}
+                        <li><a href="{{ .Permalink }}"> {{ .Params.title }}</a></li>
+                        {{ end }}
+                    </ul>
+                </div>
+            </aside>
+        {{ range .Pages }}
+                <div class="polaroid">
+                    <a href="{{ .Permalink }}"> 
+                        <div class="container">
+                        <img src="{{ .Params.photo }}" alt="photo" style="width: 100%" class="image">
+                                        <h1>{{ .Params.title }}</h1>
+                         </div>
+                        <div class="middle">
+                            <div class="description">
+                                {{ .Params.description }}
+                            </div>
+                        </div>
+                     </a>
+                </div>
+        {{ end }}
+    </body>
+</html>

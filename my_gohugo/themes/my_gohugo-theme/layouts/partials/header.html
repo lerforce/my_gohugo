@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <nav class="nav justify-content-start">
+        <a class = "navbar-brand" href="/">
+            <img src="/img/hugo.png" alt="" width=100>
+        </a>
+        </nav>
+            <nav class="nav justify-content-end" id="menu">
+                <ul>
+                    <li>
+                        <a class="btn" href="/" id="home">Home</a>
+                    </li>
+                    <li onmouseover="displayEvents()" onmouseout="hideEvents()" style="width: 300px;">
+                        <a class="btn" href="/events/" id="Events">Events <i class="down"></i></a>
+                            <div class="dropdown" id="dropdown">
+                                <ul>
+                                <li>
+                                    <a href="/events/">All</a>
+                                </li>
+                                <li>
+                                    <a href="/archived-events">Archived</a>
+                                </li>
+                                <li>
+                                    <a href="/upcoming-events/">Upcoming</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="btn" href="/associations/" id="Associations">Associations</a>
+                    </li>
+                    <li>
+                        <a class="btn" href="/conseil-municipal/" id="Conseil-municipals">Municipal Counsil</a>
+                    </li>
+                    <li>
+                        <a class="btn" href="/calendar/" id="Calendar">Calendar</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+</html>
+
+<script type="text/javascript">
+function displayEvents() {
+    document.getElementById("dropdown").style.display='block';
+}
+
+function hideEvents() {
+    document.getElementById("dropdown").style.display='none';
+}
+</script>

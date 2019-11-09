@@ -1,0 +1,10 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "My New Hugo Site"
+theme = "my_gohugo-theme"
+themesDir = "./themes"
+
+[map]
+engine = 2
+api_key = "AIzaSyA9Wubxs0gJOcM9vSHwx3SimIXCmHveP7A"
+zoom = 15

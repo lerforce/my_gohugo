@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    {{ partial "head.html" . }}
+    {{ partial "header.html" . }}
+    <body>
+        <div class="caroussel">
+            <div id="slideshow">
+                <div class="elemnt"><span></span></div>
+                <div class="elemnt1"><span></span></div>
+                <div class="elemnt2"><span></span></div>
+                <div class="elemnt3"><span></span></div>
+            </div>
+        </div>
+        <div class="container" style="background-image:url('/img/bordeaux9.jpg'); background-repeat:no-repeat; background-size:100% 100%;">
+            <h1 style="color: cornsilk;">Next 10 upcoming events !</h1>
+            {{ range last 10 (sort (where .Site.RegularPages "Type" "events") ".Params.when") }}
+            {{ $date := (time .Params.when) }}
+            {{ if $date.After now }}
+            <div class="polaroid">
+                    <a href="{{ .Permalink }}">
+                        <div class="event-picture">
+                            <ul id="caroussel">
+                                {{ range .Params.photos }}
+                                    <li>
+                                        <img src="{{ . }}" alt="">
+                                    </li>
+                                    {{ end }}
+                                </ul>
+                                    <div class="middle">
+                                        <div class="description">
+                                            <h3>{{ .Params.title }}</h3>
+                                            <hr>
+                                                    {{ $date.Day }} {{ $date.Month }} {{ $date.Year }}
+                                                    <br>
+                                                    {{ .Params.label }}
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="container">
+                                    </div>
+                            </a>
+                        </div>
+                    {{ end }}
+            {{ end }}
+        </div>
+    </body>
+        {{ partial "footer.html" . }}
+</html>

@@ -1,0 +1,79 @@
+<html>
+    {{ partial "head" . }}
+    {{ partial "header" . }}
+    <body id="background" style="height: auto;">
+            <aside>
+                        <div id="nav-tab" role="tablist">
+                            <ul style="margin-left:-19%; margin-right:-12%;">
+                                <li>
+                                    <button class="" id="all-button" style="margin: 1%; padding: 0%;">
+                                        <a href="/events/">All</a>
+                                    </button>
+                            </li>
+                            <li>
+                                <button class="" id="archived-button" style="margin: 1%; padding: 0%;">
+                                    <a href="/archived-events/">Archived</a>
+                                </button>
+                            </li>
+                            <li>
+                                <button class="" id="upcoming-button" style="margin: 1%; padding: 0%;">
+                                    <a href="/upcoming-events/">Upcoming</a>
+                                </button>
+                            </li>
+                            <li>
+                                <button style="margin: 1%; padding: 0%;">
+                                        <a href="/calendar/">Calendar</a>
+                                  </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="input-wrapper">
+                        <input onkeyUp="eventSearch()" type="text" id="event-search" placeholder="Search an event ...">
+                        <img onclick="eventSearch()" src="/img/search.png" alt="">
+                    </div>
+                    <hr>
+                    <div class="result">
+                        <ul id="search-ul" style="display: none">
+                            {{ range where .Site.RegularPages "Type" "events" }}
+                            {{ $date := (time .Params.when) }}
+                            {{ if  $date.Before now }}
+                            <li><a href="{{ .Permalink }}"> {{ .Params.title }}</a></li>
+                            {{ end }}
+                            {{ end }}
+                        </ul>
+                    </div>
+                </aside>
+        <div>
+            {{ range sort (where .Site.RegularPages "Type" "events") ".Params.when" }}
+            {{ $date := (time .Params.when) }}
+            {{ if  $date.Before now }}
+            <div class="polaroid">
+                <a href="{{ .Permalink }}">
+                    <div class="event-picture">
+                        <ul id="caroussel">
+                            {{ range .Params.photos }}
+                            <li>
+                                <img src="{{ . }}" alt="">
+                            </li>
+                            {{ end }}
+                            </ul>
+                            <div class="middle">
+                                <div class="description">
+                                    <h3>{{ .Params.title }}</h3>
+                                    <hr>
+                                    {{ $date.Day }} {{ $date.Month }} {{ $date.Year }}
+                                        <br>
+                                        {{ .Params.label }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                
+                            </div>
+                        </a>
+                    </div>
+                    {{ end }}
+                    {{ end }}
+                </div>
+            </body>
+</html>

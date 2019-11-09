@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    {{ partial "head.html" . }}
+    {{ partial "header.html" . }}
+    <body id="background">
+            {{ range .Pages }}
+            <div class="polaroid">
+                <img src="{{ .Params.photo }}" alt="photo" style="width: 100%" class="image">
+                <div class="middle">
+                    <div class="description">
+                        {{ .Params.description }}
+                    </div>
+                </div>
+                <div class="container">
+                        <h1>{{ .Params.lastName }}</h1>
+                    </div>
+            </div>
+            {{ end }}
+    </body>
+</html>
